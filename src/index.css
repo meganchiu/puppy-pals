@@ -55,6 +55,7 @@ button:focus-visible {
 }
 
 #featuredPup {
+  border: 2px dotted greenyellow;
   background-color: salmon;
   color: black;
 }
