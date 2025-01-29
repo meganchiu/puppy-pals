@@ -2,11 +2,20 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import './index.css'
 import {puppyList} from './data.js'
 function App() {
   const [puppies, setPuppies] = useState(puppyList)
+  const [featPupId, setFeatPupId] = useState(null)
 
-  console.log("puppies => ", puppies);
+  // function clickPuppy() {
+  //   console.log("puppy id =>", puppy.id)
+  // }
+
+  // console.log("puppies => ", puppies);
+
+  const featuredPup = puppies.find((pup)=> pup.id === featPupId);
+  // console.log(featuredPup);
 
   return (
     <>
@@ -22,9 +31,20 @@ function App() {
       <div className="card">
         { 
           puppies.map((puppy) => {
-            return <p key={puppy.id}>{puppy.name}</p>
+            return <p onClick={()=>{setFeatPupId(puppy.id)}} key={puppy.id}>{puppy.name}</p>
           })
         }
+      {/* <p> Featured Puppy ID: {featPupId}</p> */}
+      {/* {featPupId && <p>Featured Puppy ID: {featPupId}</p>} */}
+      {featPupId && (
+        <div id="featuredPup">
+          <h2>{featuredPup.name}</h2>
+          <ul>
+            <li>Age: {featuredPup.age}</li>
+            <li>Email: {featuredPup.email}</li>
+          </ul>
+        </div>
+      )}
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
